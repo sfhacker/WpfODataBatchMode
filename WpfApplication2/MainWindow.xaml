@@ -1,0 +1,41 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication2"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="WpfApplication2.MainWindow"
+        mc:Ignorable="d"
+        Title="Paises ABM" Height="350" Width="525" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <telerik:RadDataServiceDataSource x:Name="paisesDataSource" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <telerik:RadGridView x:Name="gridView" HorizontalAlignment="Stretch" Margin="10,10,10,112" VerticalAlignment="Stretch"
+                             ShowGroupPanel="False" AutoGenerateColumns="False" CanUserReorderColumns="False"
+                             SelectionMode="Extended"
+                             Loaded="gridView_Loaded" AddingNewDataItem="gridView_NewItem" DataLoading="gridView_DataLoading" DataLoaded="gridView_DataLoaded">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding id}" Header="Id" UniqueName="paisId" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding nombre}" Header="Nombre" UniqueName="paisName" />
+            </telerik:RadGridView.Columns>
+            <telerik:RadContextMenu.ContextMenu>
+                <telerik:RadContextMenu x:Name="GridContextMenu" ItemClick="radContextMenu_ItemClick">
+                    <telerik:RadMenuItem Header="Nuevo" x:Name="menuInsert" />
+                    <telerik:RadMenuItem Header="Modificar" x:Name="menuUpdate" />
+                    <telerik:RadMenuItem Header="Eliminar" x:Name="menuDelete" />
+                    <telerik:RadMenuItem IsSeparator="True" />
+                    <telerik:RadMenuItem Header="Provincias" x:Name="menuProvincias" />
+                </telerik:RadContextMenu>
+            </telerik:RadContextMenu.ContextMenu>
+        </telerik:RadGridView>
+
+        <telerik:RadDataPager x:Name="dataPager" PageSize="5" HorizontalAlignment="Stretch" Height="Auto" Margin="12,249,21,0" VerticalAlignment="Top"/>
+        <telerik:RadButton x:Name="btnSaveAll" Content="Guardar Cambios" HorizontalAlignment="Left" Height="Auto" Margin="12,221,0,0" VerticalAlignment="Top" Width="Auto" Click="btnSaveAll_Click"/>
+        <telerik:RadButton x:Name="btnCancelAll" Content="Deshacer Cambios" HorizontalAlignment="Left" Height="Auto" Margin="122,221,0,0" VerticalAlignment="Top" Width="Auto" Click="btnCancelAll_Click"/>
+
+        <StatusBar HorizontalAlignment="Stretch" Height="37" VerticalAlignment="Bottom">
+            <StatusBarItem>
+                <TextBlock x:Name="statusInfo"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
