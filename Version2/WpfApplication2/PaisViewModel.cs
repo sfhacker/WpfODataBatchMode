@@ -1,4 +1,4 @@
-﻿
+
 namespace WpfApplication2
 {
     using com.cairone.odataexample;
@@ -168,6 +168,8 @@ namespace WpfApplication2
             this.serviceContext.ProcessOperation(this.entityList);
 
             this.Errors = this.serviceContext.SubmitChanges();
+
+            this.entityList.Clear();
 
             //this.newItems.Clear();
             //this.updateItems.Clear();
